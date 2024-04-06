@@ -33,6 +33,25 @@ func GetUser(xuid string) User {
 	return user
 }
 
+// GetUserFromName gets the user with the specified name from the database. This function
+// will panic if the user does not exist.
+func GetUserFromName(name string) User {
+	user := User{}
+
+	rows, err := DB.Query(`SELECT * FROM "Users" where "Name" = $1`, name)
+	if err != nil {
+		panic(err)
+	}
+
+	defer rows.Close()
+
+	if err := rows.Scan(&user.Name, &user.Xuid, &user.LastOnline, &user.Registered); err != nil {
+		panic(err)
+	}
+
+	return user
+}
+
 // IsUser returns whether the user with the specified xuid exists.
 func IsUser(xuid string) bool {
 	rows, err := DB.Query(`SELECT * FROM "Users" where "Xuid" = $1`, xuid)
