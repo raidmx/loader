@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"github.com/STCraft/DFLoader/dragonfly"
 	"github.com/STCraft/dragonfly/server/cmd"
 	"github.com/STCraft/dragonfly/server/player"
 	"github.com/STCraft/dragonfly/server/world"
@@ -14,16 +15,18 @@ type GameMode struct {
 
 // Run ...
 func (c GameMode) Run(src cmd.Source, o *cmd.Output) {
-	players, _ := c.Target.Load()
+	players, ok := c.Target.Load()
 
-	s, isPlayer := src.(*player.Player)
+	if !ok || len(players) == 0 {
+		// If targets are not specified then we add the console as self target
+		if p, ok := src.(*player.Player); ok {
+			players = append(players, p)
+		}
+	}
 
 	if len(players) == 0 {
-		if isPlayer {
-			_ = setGamemode(s, c.Mode)
-		} else {
-			o.Errorf("Usage: /gamemode <mode> <player>")
-		}
+		o.Printf(dragonfly.Translation("must_specify_target"))
+		return
 	}
 
 	for _, target := range players {
@@ -33,9 +36,20 @@ func (c GameMode) Run(src cmd.Source, o *cmd.Output) {
 		}
 
 		mode := setGamemode(t, c.Mode)
-		o.Printf("§7You have updated §f%v's §7Gamemode to §f%v", t.Name(), mode)
+		o.Printf(dragonfly.Translation("target_gamemode_updated", t.Name(), mode))
 	}
 
+}
+
+// Allow ...
+func (c GameMode) Allow(src cmd.Source) bool {
+	s, isPlayer := src.(*player.Player)
+
+	if isPlayer && !dragonfly.IsOP(s.XUID()) {
+		return false
+	}
+
+	return true
 }
 
 // setGamemode sets the gamemode of the provided player to the specified new gamemode. It also dispatches
@@ -58,7 +72,7 @@ func setGamemode(t *player.Player, gm gamemode) string {
 		t.SetGameMode(world.GameModeSpectator)
 	}
 
-	t.Messagef("§7Your Game Mode has been updated to §f%v", mode)
+	t.Messagef(dragonfly.Translation("self_gamemode_updated", mode))
 	return mode
 }
 

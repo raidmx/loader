@@ -14,15 +14,23 @@ type Say struct {
 
 // Run ...
 func (c Say) Run(src cmd.Source, o *cmd.Output) {
-	p, ok := src.(*player.Player)
+	sender := "CONSOLE"
+	msg := string(c.Message)
 
-	sender := ""
-
-	if ok {
+	if p, ok := src.(*player.Player); ok {
 		sender = p.Name()
-	} else {
-		sender = "Console"
 	}
 
-	dragonfly.Server.Broadcast("§d%s says: %s", sender, c.Message)
+	dragonfly.Server.Broadcast(dragonfly.Translation("broadcast_say", sender, msg))
+}
+
+// Allow ...
+func (c Say) Allow(src cmd.Source) bool {
+	s, isPlayer := src.(*player.Player)
+
+	if isPlayer && !dragonfly.IsOP(s.XUID()) {
+		return false
+	}
+
+	return true
 }

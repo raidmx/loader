@@ -3,6 +3,7 @@ package commands
 import (
 	"time"
 
+	"github.com/STCraft/DFLoader/dragonfly"
 	"github.com/STCraft/dragonfly/server/cmd"
 	"github.com/STCraft/dragonfly/server/player"
 )
@@ -16,11 +17,7 @@ type Weather struct {
 
 // Run ..
 func (c Weather) Run(src cmd.Source, o *cmd.Output) {
-	p, ok := src.(*player.Player)
-	if !ok {
-		o.Errorf("Please run this command in-game")
-		return
-	}
+	p := src.(*player.Player)
 
 	w := p.World()
 	t := time.Duration(c.Duration.LoadOr(60)) * time.Second
@@ -29,18 +26,27 @@ func (c Weather) Run(src cmd.Source, o *cmd.Output) {
 	case "clear":
 		w.StopRaining()
 		w.StopThundering()
-		o.Printf("Changing to clear weather")
+		o.Print(dragonfly.Translation("weather_changed", "clear"))
 	case "rain":
 		w.StartRaining(t)
-		o.Printf("Changing to rainy weather")
+		o.Print(dragonfly.Translation("weather_changed", "rainy"))
 	case "thunder":
 		w.StartRaining(t)
 		w.StartThundering(t)
-		o.Printf("Changing to rain and thunder")
+		o.Print(dragonfly.Translation("weather_changed", "rainy and thunder"))
 	default:
-		o.Errorf("Unknown weather type: %s", c.Weather)
+		o.Print(dragonfly.Translation("unknown_weather", string(c.Weather)))
 		return
 	}
+}
+
+// Allow ...
+func (c Weather) Allow(src cmd.Source) bool {
+	if _, ok := src.(*player.Player); ok {
+		return false
+	}
+
+	return true
 }
 
 // weatherType ...

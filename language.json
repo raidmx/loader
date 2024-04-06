@@ -1,0 +1,26 @@
+{
+    "messages": {
+        "must_specify_target": "§cYou must specify a target for this command to execute",
+        "single_target_expected": "§cYou can use this command on a single target only.",
+        "target_must_be_player": "§cYou can only execute this command on a player.",
+        "target_gamemode_updated": "§7You have updated §f%s's §7Gamemode to §f%s",
+        "self_gamemode_updated": "§7Your Game Mode has been updated to §f%s",
+        "already_operator": "§7Nothing changed! §f%s §7is already a Server Operator",
+        "operator_granted": "§7You have made §f%s §7a Server Operator",
+        "already_not_operator": "§7Nothing changed! §f%s §7is not a Server Operator",
+        "operator_withdrawn": "§7You have removed the §cOperator Access §7from §f%s",
+        "broadcast_say": "§d%s says: %s",
+        "weather_changed": "§7Changing the weather to §f%s",
+        "unknown_weather": "§cUnknown weather %s"
+    },
+    "toasts": {
+        "operator_access_granted": {
+            "title": "§2Operator Access Granted",
+            "content": "You are now a §eServer Operator!"
+        },
+        "operator_access_withdrawn": {
+            "title": "§cOperator Access Withdrawn",
+            "content": "You are no longer a §7Server Operator!"
+        }
+    }
+}
