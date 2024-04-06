@@ -1,4 +1,4 @@
-module github.com/STCraft/dragonfly-loader
+module github.com/STCraft/DFLoader
 
 go 1.22.2
 

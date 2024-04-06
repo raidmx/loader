@@ -1,7 +1,7 @@
 package registry
 
 import (
-	"github.com/STCraft/dragonfly-loader/commands"
+	"github.com/STCraft/DFLoader/commands"
 	"github.com/STCraft/dragonfly/server/cmd"
 )
 

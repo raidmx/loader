@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/STCraft/dragonfly-loader/dragonfly"
+	"github.com/STCraft/DFLoader/dragonfly"
 	"github.com/STCraft/dragonfly/server/cmd"
 	"github.com/STCraft/dragonfly/server/player"
 )

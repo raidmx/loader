@@ -1,11 +1,11 @@
 package loader
 
 import (
-	"github.com/STCraft/dragonfly-loader/dragonfly"
-	"github.com/STCraft/dragonfly-loader/registry"
+	"github.com/STCraft/DFLoader/dragonfly"
+	"github.com/STCraft/DFLoader/registry"
 )
 
-// Start starts the dragonfly-loader mod and registers all the commands, libraries, and various
+// Start starts the DFLoader mod and registers all the commands, libraries, and various
 // other features that this library provides.
 func Start() {
 	registry.VanillaCommands()
