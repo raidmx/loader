@@ -27,6 +27,19 @@ func loadOperators() {
 	}
 }
 
+// Saves all the operators to the disk.
+func saveOperators() {
+	content, err := json.MarshalIndent(operators, "", "  ")
+	if err != nil {
+		panic(err)
+	}
+
+	os.RemoveAll("./operators.json")
+	if err := os.WriteFile("./operators.json", content, 0755); err != nil {
+		panic(err)
+	}
+}
+
 // Operators is the list of server Operators which is saved after closing the server
 // in the file Operators.json
 var operators Operators

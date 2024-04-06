@@ -11,6 +11,10 @@ var Server *server.Server
 // This is a blocking function as it runs the Start() method on the dragonfly instance which starts
 // listening for connections on all the listeners configured.
 func New() {
+	defer func() {
+		saveOperators()
+	}()
+
 	loadLanguage()
 	loadOperators()
 

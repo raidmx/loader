@@ -1,6 +1,7 @@
 package loader
 
 import (
+	"github.com/STCraft/DFLoader/db"
 	"github.com/STCraft/DFLoader/dragonfly"
 	"github.com/STCraft/DFLoader/registry"
 )
@@ -9,5 +10,6 @@ import (
 // other features that this library provides.
 func Start() {
 	registry.VanillaCommands()
+	db.Init()
 	dragonfly.New()
 }
