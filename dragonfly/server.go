@@ -2,6 +2,7 @@ package dragonfly
 
 import (
 	"github.com/STCraft/dragonfly/server"
+	"github.com/STCraft/dragonfly/server/player"
 )
 
 // Server is a global instance of dragonfly
@@ -19,5 +20,14 @@ func New() {
 	loadOperators()
 
 	Server = server.New()
+	Server.CloseOnProgramEnd()
 	Server.Start()
+
+	for Server.Accept(func(p *player.Player) {
+		for key, h := range handlers {
+			p.AddHandler(key, h)
+		}
+	}) {
+		println("test")
+	}
 }

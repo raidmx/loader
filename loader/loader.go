@@ -26,6 +26,6 @@ func Start() {
 		db.DB.Close()
 	}()
 
-	registry.VanillaCommands()
+	registry.RegisterVanillaCommands()
 	dragonfly.New()
 }
