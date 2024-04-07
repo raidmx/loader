@@ -2,7 +2,7 @@ module github.com/STCraft/DFLoader
 
 go 1.22.2
 
-require github.com/STCraft/dragonfly v0.0.0-20240407073556-b5505c737ede
+require github.com/STCraft/dragonfly v0.0.0-20240407091208-0d9e52d7f3f3
 
 require (
 	github.com/brentp/intintmap v0.0.0-20190211203843-30dc0ade9af9 // indirect
@@ -10,7 +10,7 @@ require (
 	github.com/df-mc/atomic v1.10.0 // indirect
 	github.com/df-mc/goleveldb v1.1.9 // indirect
 	github.com/df-mc/worldupgrader v1.0.13 // indirect
-	github.com/go-gl/mathgl v1.1.0
+	github.com/go-gl/mathgl v1.1.0 // indirect
 	github.com/go-jose/go-jose/v3 v3.0.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect

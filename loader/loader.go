@@ -21,10 +21,6 @@ func Start() {
 		panic("Call loader.Init() first before calling this function")
 	}
 
-	defer func() {
-		dragonfly.DB.Close()
-	}()
-
 	registry.RegisterVanillaCommands()
 	dragonfly.New()
 }

@@ -2,6 +2,9 @@ package dragonfly
 
 import (
 	"time"
+
+	"github.com/STCraft/dragonfly/server/event"
+	"github.com/STCraft/dragonfly/server/player"
 )
 
 // DFUser represents a player that may be offline. This is useful for retrieving
@@ -78,5 +81,19 @@ func updateUser(xuid string, name string) {
 
 	if _, err := DB.Exec(`UPDATE "Users" SET "Name" = $1, "LastOnline" = $2 WHERE "Xuid" = $3`, name, time, xuid); err != nil {
 		panic(err)
+	}
+}
+
+// UserHandler handles the various events such as User Creation, User Update, etc.
+type UserHandler struct {
+	player.NopHandler
+}
+
+// HandleJoin ...
+func (UserHandler) HandleJoin(ctx *event.Context, p *player.Player) {
+	if !IsUser(p.XUID()) {
+		createUser(p.XUID(), p.Name())
+	} else {
+		updateUser(p.XUID(), p.Name())
 	}
 }
