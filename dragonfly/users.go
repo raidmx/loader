@@ -1,6 +1,7 @@
 package dragonfly
 
 import (
+	"strings"
 	"time"
 
 	"github.com/STCraft/dragonfly/server/event"
@@ -29,8 +30,10 @@ func User(xuid string) *DFUser {
 
 	defer rows.Close()
 
-	if err := rows.Scan(&user.Name, &user.Xuid, &user.LastOnline, &user.Registered); err != nil {
-		return nil
+	if rows.Next() {
+		if err := rows.Scan(&user.Name, &user.Xuid, &user.LastOnline, &user.Registered); err != nil {
+			return nil
+		}
 	}
 
 	return &user
@@ -41,15 +44,17 @@ func User(xuid string) *DFUser {
 func UserFromName(name string) *DFUser {
 	user := DFUser{}
 
-	rows, err := DB.Query(`SELECT * FROM "Users" where "Name" = $1`, name)
+	rows, err := DB.Query(`SELECT * FROM "Users" where LOWER("Name") = $1`, strings.ToLower(name))
 	if err != nil {
 		panic(err)
 	}
 
 	defer rows.Close()
 
-	if err := rows.Scan(&user.Name, &user.Xuid, &user.LastOnline, &user.Registered); err != nil {
-		return nil
+	if rows.Next() {
+		if err := rows.Scan(&user.Name, &user.Xuid, &user.LastOnline, &user.Registered); err != nil {
+			return nil
+		}
 	}
 
 	return &user
