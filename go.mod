@@ -2,7 +2,7 @@ module github.com/STCraft/DFLoader
 
 go 1.22.2
 
-require github.com/STCraft/dragonfly v0.0.0-20240406210504-73f3f5e0f8fa
+require github.com/STCraft/dragonfly v0.0.0-20240407064542-a755e5ef3355
 
 require (
 	github.com/brentp/intintmap v0.0.0-20190211203843-30dc0ade9af9 // indirect

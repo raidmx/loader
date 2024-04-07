@@ -4,7 +4,6 @@ import (
 	"net"
 	"time"
 
-	"github.com/STCraft/DFLoader/db"
 	"github.com/STCraft/dragonfly/server/block/cube"
 	"github.com/STCraft/dragonfly/server/cmd"
 	"github.com/STCraft/dragonfly/server/event"
@@ -24,11 +23,12 @@ func (DefaultHandler) HandleJoin(ctx *event.Context, xuid string) {
 		return
 	}
 
-	if !db.IsUser(xuid) {
-		db.CreateUser(xuid, p.Name())
-	} else {
-		db.UpdateUser(xuid, p.Name())
+	if !IsUser(xuid) {
+		createUser(xuid, p.Name())
+		return
 	}
+
+	updateUser(xuid, p.Name())
 }
 
 func (DefaultHandler) HandleItemDrop(*event.Context, world.Entity)                                {}

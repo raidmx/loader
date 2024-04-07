@@ -28,6 +28,5 @@ func New() {
 			p.AddHandler(key, h)
 		}
 	}) {
-		println("test")
 	}
 }

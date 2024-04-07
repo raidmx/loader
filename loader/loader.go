@@ -1,7 +1,6 @@
 package loader
 
 import (
-	"github.com/STCraft/DFLoader/db"
 	"github.com/STCraft/DFLoader/dragonfly"
 	"github.com/STCraft/DFLoader/registry"
 )
@@ -12,18 +11,18 @@ import (
 // the loader. For example: plugins may want to initialise their tables after initialising of the
 // database.
 func Init() {
-	db.Init()
+	dragonfly.InitDB()
 }
 
 // Start starts the DFLoader mod and registers all the commands, libraries, and various
 // other features that this library provides.
 func Start() {
-	if db.DB == nil {
+	if dragonfly.DB == nil {
 		panic("Call loader.Init() first before calling this function")
 	}
 
 	defer func() {
-		db.DB.Close()
+		dragonfly.DB.Close()
 	}()
 
 	registry.RegisterVanillaCommands()
