@@ -92,10 +92,18 @@ func updateUser(xuid string, name string) {
 // UserHandler handles the various events such as User Creation, User Update, etc.
 type UserHandler struct {
 	player.NopHandler
+	p *player.Player
+}
+
+// New ...
+func (UserHandler) New(p *player.Player) player.Handler {
+	return UserHandler{p: p}
 }
 
 // HandleJoin ...
-func (UserHandler) HandleJoin(ctx *event.Context, p *player.Player) {
+func (h UserHandler) HandleJoin(ctx *event.Context) {
+	p := h.p
+
 	if !IsUser(p.XUID()) {
 		createUser(p.XUID(), p.Name())
 	} else {
