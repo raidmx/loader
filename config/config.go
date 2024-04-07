@@ -11,7 +11,13 @@ type Object map[string]any
 
 // New returns the Config at the specified path. If no config is found it creates one
 // and also returns the default config.
-func New(path string, defaultConfig []byte) Object {
+func New(dir string, file string, defaultConfig []byte) Object {
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		panic(err)
+	}
+
+	path := fmt.Sprintf("./%s/%s", dir, file)
+
 	content, err := os.ReadFile(path)
 	if err != nil {
 		if err := os.WriteFile(path, defaultConfig, 0755); err != nil {

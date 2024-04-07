@@ -13,7 +13,7 @@ var DB *sql.DB
 
 //go:embed postgres.json
 var defaultDB []byte
-var dbConfig = config.New("./postgres.json", defaultDB)
+var dbConfig = config.New("", "./postgres.json", defaultDB)
 
 // InitDB initialises the postgreSQL database.
 func InitDB() {
