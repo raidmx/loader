@@ -1,5 +1,5 @@
 config.toml
-*.json
+/*.json
 main.go
 /players
 /resources

@@ -2,17 +2,29 @@ package dragonfly
 
 import (
 	"database/sql"
+	_ "embed"
+	"fmt"
 
+	"github.com/STCraft/DFLoader/config"
 	_ "github.com/lib/pq"
 )
 
 var DB *sql.DB
 
+//go:embed postgres.json
+var defaultDB []byte
+var dbConfig = config.New("./postgres.json", defaultDB)
+
 // InitDB initialises the postgreSQL database.
 func InitDB() {
 	var err error
 
-	connStr := "postgres://postgres:stcraft123@localhost/stcraft?sslmode=disable"
+	address := dbConfig.GetString("address")
+	username := dbConfig.GetString("username")
+	password := dbConfig.GetString("password")
+	database := dbConfig.GetString("database")
+
+	connStr := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", username, password, address, database)
 	DB, err = sql.Open("postgres", connStr)
 
 	if err != nil {
