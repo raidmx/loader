@@ -3,24 +3,32 @@ package loader
 import (
 	"github.com/STCraft/DFLoader/dragonfly"
 	"github.com/STCraft/DFLoader/registry"
+	"github.com/STCraft/dragonfly/server"
 )
 
-// Init initialises the various libraries and utilities that may be used in common for both
-// the DFLoader and Plugins / Libraries using this loader. For example: DB. This is put in a
-// separate function so that plugins can initialise their own specific stuff after initialising
-// the loader. For example: plugins may want to initialise their tables after initialising of the
-// database.
+// Init initialises the Dragonfly server. You can initialise your library specific requirements
+// after calling this function.
 func Init() {
 	dragonfly.InitDB()
+	dragonfly.LoadLanguage()
+	dragonfly.LoadOperators()
+
+	registry.RegisterVanillaCommands()
+
+	dragonfly.Server = server.New()
+	dragonfly.Server.RegisterHandler("user", dragonfly.UserHandler{})
 }
 
-// Start starts the DFLoader mod and registers all the commands, libraries, and various
-// other features that this library provides.
+// Start starts the Dragonfly server. This is a blocking function.
 func Start() {
 	if dragonfly.DB == nil {
 		panic("Call loader.Init() first before calling this function")
 	}
 
-	registry.RegisterVanillaCommands()
-	dragonfly.New()
+	defer func() {
+		dragonfly.SaveOperators() // We must save the list of operators in the end.
+		dragonfly.DB.Close()      // We must close our connection to the database.
+	}()
+
+	dragonfly.Server.Start()
 }

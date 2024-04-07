@@ -30,7 +30,7 @@ var defaultLanguage []byte
 
 // loadLanguage Parses the language.json file if it exists and creates a new one
 // with the default values if it doesn't exist and loads all the content.
-func loadLanguage() {
+func LoadLanguage() {
 	content, err := os.ReadFile("./language.json")
 
 	if err != nil {

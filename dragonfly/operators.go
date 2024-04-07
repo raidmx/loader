@@ -15,7 +15,7 @@ type Operators struct {
 var defaultOperators []byte
 
 // loadOperators loads all the operators from the operators.json file
-func loadOperators() {
+func LoadOperators() {
 	content, err := os.ReadFile("./operators.json")
 
 	if err != nil {
@@ -28,7 +28,7 @@ func loadOperators() {
 }
 
 // Saves all the operators to the disk.
-func saveOperators() {
+func SaveOperators() {
 	content, err := json.MarshalIndent(operators, "", "  ")
 	if err != nil {
 		panic(err)
