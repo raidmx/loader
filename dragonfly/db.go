@@ -41,7 +41,7 @@ func InitDB() {
 // DBExec wraps around the DB to provide a sql.Result. This function panics if
 // the query failed.
 func DBQuery(query string, args ...any) *sql.Rows {
-	rows, err := DB.Query(query, args)
+	rows, err := DB.Query(query, args...)
 
 	if err != nil {
 		panic(err)
@@ -53,7 +53,7 @@ func DBQuery(query string, args ...any) *sql.Rows {
 // DBExec wraps around the DB to provide a sql.Result. This function panics if
 // the query failed.
 func DBExec(query string, args ...any) sql.Result {
-	result, err := DB.Exec(query, args)
+	result, err := DB.Exec(query, args...)
 
 	if err != nil {
 		panic(err)
