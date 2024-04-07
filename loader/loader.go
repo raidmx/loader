@@ -25,10 +25,11 @@ func Start() {
 		panic("Call loader.Init() first before calling this function")
 	}
 
-	defer func() {
-		dragonfly.SaveOperators() // We must save the list of operators in the end.
-		dragonfly.DB.Close()      // We must close our connection to the database.
-	}()
-
 	dragonfly.Server.Start()
+}
+
+// Deinit deinitialises the Dragonfly server, saves configs, closes the database.
+func Deinit() {
+	dragonfly.SaveOperators() // We must save the list of operators in the end.
+	dragonfly.DB.Close()      // We must close our connection to the database.
 }
