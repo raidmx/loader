@@ -12,7 +12,7 @@ type Object map[string]any
 // New returns the Config at the specified path. If no config is found it creates one
 // and also returns the default config.
 func New(dir string, file string, defaultConfig []byte) Object {
-	if err := os.MkdirAll(dir, 0755); err != nil {
+	if err := os.MkdirAll(fmt.Sprintf("./%s", dir), 0755); err != nil {
 		panic(err)
 	}
 
