@@ -48,7 +48,7 @@ func (c Object) Get(key string) any {
 
 // GetObject ...
 func (c Object) GetObject(key string) Object {
-	val, ok := c.Get(key).(Object)
+	val, ok := c.Get(key).(map[string]any)
 	if !ok {
 		panic("value is not a subconfig")
 	}
