@@ -7,12 +7,6 @@ import (
 	"sync"
 )
 
-// Operators specifies the structure in which the server operators are stored.
-type Operators struct {
-	mu   *sync.RWMutex
-	List []string `json:"list"`
-}
-
 //go:embed operators.json
 var defaultOperators []byte
 
@@ -49,9 +43,15 @@ func SaveOperators() {
 	}
 }
 
-// Operators is the list of server Operators which is saved after closing the server
-// in the file Operators.json
-var operators Operators
+// OperatorRegistry is the registry of all the operators of the server
+type OperatorRegistry struct {
+	mu   *sync.RWMutex
+	List []string `json:"list"`
+}
+
+// operators is the instance of OperatorRegistry containing all the operators
+// of the server
+var operators OperatorRegistry
 
 // Sets the player with the provided XUID as the operator
 func SetOP(xuid string) {
