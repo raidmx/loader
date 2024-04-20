@@ -11,7 +11,14 @@
         "operator_withdrawn": "§7You have removed the §cOperator Access §7from §f%s",
         "broadcast_say": "§d%s says: %s",
         "weather_changed": "§7Changing the weather to §f%s",
-        "unknown_weather": "§cUnknown weather %s"
+        "unknown_weather": "§cUnknown weather %s",
+        "world_not_found": "§7World with the name §f%s §7is not loaded!",
+        "world_loaded": "§7World with the name §f%s §7has been loaded! §7[ Dimension = §f%s§7, Generator = §f%s§7 ]",
+        "cannot_unload_overworld": "§7The world §fOverworld §7cannot be unloaded",
+        "world_unloaded": "§7World with the name §f%s §7has been unloaded!",
+        "teleported_to_world": "§7You have been teleported to the world §f%s",
+        "loaded_worlds_count": "§7There are currently §f%d §7worlds loaded.",
+        "loaded_world_entry": "§7World Name: §f%s §7 - Dimension: §f%v"
     },
     "toasts": {
         "operator_access_granted": {

@@ -6,14 +6,14 @@ import (
 	"github.com/STCraft/dragonfly/server/player"
 )
 
-// DEOP can be executed from the console or by another operator to remove a player
+// Deop can be executed from the console or by another operator to remove a player
 // from their operator status
-type DEOP struct {
+type Deop struct {
 	Target []cmd.Target `cmd:"player"`
 }
 
 // Run ...
-func (c DEOP) Run(src cmd.Source, o *cmd.Output) {
+func (c Deop) Run(src cmd.Source, o *cmd.Output) {
 	if len(c.Target) > 1 {
 		o.Print(dragonfly.Translation("single_target_expected"))
 		return
@@ -32,7 +32,7 @@ func (c DEOP) Run(src cmd.Source, o *cmd.Output) {
 }
 
 // Allow ...
-func (c DEOP) Allow(src cmd.Source) bool {
+func (c Deop) Allow(src cmd.Source) bool {
 	s, isPlayer := src.(*player.Player)
 
 	if isPlayer && !dragonfly.IsOP(s.XUID()) {
