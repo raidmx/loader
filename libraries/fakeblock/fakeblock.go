@@ -5,8 +5,6 @@ import (
 	"github.com/STCraft/dragonfly/server/world"
 )
 
-var fakeblocks = map[string]*FakeBlock{}
-
 type FakeBlock struct {
 	original world.Block
 	block    world.Block
