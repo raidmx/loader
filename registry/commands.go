@@ -16,4 +16,5 @@ func RegisterVanillaCommands() {
 	cmd.Register(cmd.New("tell", "Message a player", []string{"msg"}, commands.Tell{}))
 	cmd.Register(cmd.New("time", "Time management", []string{}, commands.TimeAdd{}, commands.TimeQuery{}, commands.TimeSet{}, commands.TimeSetSpec{}))
 	cmd.Register(cmd.New("kill", "Kills a player", []string{""}, commands.Kill{}))
+	cmd.Register(cmd.New("teleport", "Teleports you the specified position", []string{"tp"}, commands.Teleport{}))
 }
