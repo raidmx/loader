@@ -85,8 +85,14 @@ type TimeSet struct {
 // Run ...
 func (c TimeSet) Run(src cmd.Source, o *cmd.Output) {
 	w := dragonfly.Server.World(string(c.World))
-	w.SetTime(c.Time)
-	o.Printf(dragonfly.Translation("time_set", w.Name(), c.Time))
+	time := c.Time
+
+	if time > 24000 {
+		time -= 24000
+	}
+
+	w.SetTime(time)
+	o.Printf(dragonfly.Translation("time_set", w.Name(), time))
 }
 
 // Allow ...

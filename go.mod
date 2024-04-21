@@ -10,7 +10,7 @@ require (
 	github.com/df-mc/atomic v1.10.0 // indirect
 	github.com/df-mc/goleveldb v1.1.9 // indirect
 	github.com/df-mc/worldupgrader v1.0.13 // indirect
-	github.com/go-gl/mathgl v1.1.0 // indirect
+	github.com/go-gl/mathgl v1.1.0
 	github.com/go-jose/go-jose/v3 v3.0.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect

@@ -19,7 +19,11 @@ func (c Deop) Run(src cmd.Source, o *cmd.Output) {
 		return
 	}
 
-	t := c.Target[0].(*player.Player)
+	t, ok := c.Target[0].(*player.Player)
+	if !ok {
+		o.Print(dragonfly.Translation("target_must_be_player"))
+		return
+	}
 
 	if !dragonfly.IsOP(t.XUID()) {
 		o.Printf(dragonfly.Translation("already_not_operator", t.Name()))

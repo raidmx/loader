@@ -27,13 +27,13 @@ func (c Tell) Run(src cmd.Source, o *cmd.Output) {
 	}
 
 	p, ok := c.Target[0].(*player.Player)
-	if sender == p.Name() {
-		o.Printf(dragonfly.Translation("must_specify_target"))
+	if !ok {
+		o.Print(dragonfly.Translation("target_must_be_player"))
 		return
 	}
 
-	if !ok {
-		o.Print(dragonfly.Translation("target_must_be_player"))
+	if sender == p.Name() {
+		o.Printf(dragonfly.Translation("must_specify_target"))
 		return
 	}
 
