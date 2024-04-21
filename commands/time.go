@@ -27,15 +27,15 @@ var timeSpecToAmount = map[spec]int{
 
 // TimeAdd is used to add time to the world of the command executor
 type TimeAdd struct {
+	World  worldName      `cmd:"world"`
 	Add    cmd.SubCommand `cmd:"add"`
 	Amount int            `name:"amount"`
 }
 
 // Run ...
 func (c TimeAdd) Run(src cmd.Source, o *cmd.Output) {
-	w := src.World()
+	w := dragonfly.Server.World(string(c.World))
 	w.SetTime(w.Time() + c.Amount)
-
 	o.Printf(dragonfly.Translation("added_to_time", c.Amount, w.Name()))
 }
 
@@ -53,12 +53,13 @@ func (c TimeAdd) Allow(src cmd.Source) bool {
 // TimeQuery command is used to query the current time in the world of
 // the command executor
 type TimeQuery struct {
+	World worldName      `cmd:"world"`
 	Query cmd.SubCommand `cmd:"query"`
 }
 
 // Run ...
-func (TimeQuery) Run(src cmd.Source, o *cmd.Output) {
-	w := src.World()
+func (c TimeQuery) Run(src cmd.Source, o *cmd.Output) {
+	w := dragonfly.Server.World(string(c.World))
 	o.Printf(dragonfly.Translation("time_query", w.Name(), w.Time()))
 }
 
@@ -76,20 +77,16 @@ func (c TimeQuery) Allow(src cmd.Source) bool {
 // TimeSet command is used to set the time in the world of the command
 // executor to the provided time
 type TimeSet struct {
-	Set  cmd.SubCommand `cmd:"set"`
-	Time int            `name:"time"`
-}
-
-// TimeSetSpec command is used to set the time in the world of the command
-// executor from one of the enum options
-type TimeSetSpec struct {
-	Set  cmd.SubCommand `cmd:"set"`
-	Time spec           `name:"time"`
+	World worldName      `cmd:"world"`
+	Set   cmd.SubCommand `cmd:"set"`
+	Time  int            `name:"time"`
 }
 
 // Run ...
-func (c TimeSet) Run(source cmd.Source, output *cmd.Output) {
-	setTime(source, output, c.Time)
+func (c TimeSet) Run(src cmd.Source, o *cmd.Output) {
+	w := dragonfly.Server.World(string(c.World))
+	w.SetTime(c.Time)
+	o.Printf(dragonfly.Translation("time_set", w.Name(), c.Time))
 }
 
 // Allow ...
@@ -103,9 +100,21 @@ func (c TimeSet) Allow(src cmd.Source) bool {
 	return true
 }
 
+// TimeSetSpec command is used to set the time in the world of the command
+// executor from one of the enum options
+type TimeSetSpec struct {
+	World worldName      `cmd:"world"`
+	Set   cmd.SubCommand `cmd:"set"`
+	Time  spec           `name:"time"`
+}
+
 // Run ...
-func (c TimeSetSpec) Run(source cmd.Source, output *cmd.Output) {
-	setTime(source, output, timeSpecToAmount[c.Time])
+func (c TimeSetSpec) Run(src cmd.Source, o *cmd.Output) {
+	w := dragonfly.Server.World(string(c.World))
+	t := timeSpecToAmount[c.Time]
+
+	w.SetTime(t)
+	o.Printf(dragonfly.Translation("time_set", w.Name(), t))
 }
 
 // Allow ...
@@ -117,13 +126,4 @@ func (c TimeSetSpec) Allow(src cmd.Source) bool {
 	}
 
 	return true
-}
-
-// setTime is called to set the time of the world of the command source to
-// the provided value
-func setTime(source cmd.Source, output *cmd.Output, t int) {
-	w := source.World()
-	w.SetTime(t)
-
-	output.Printf(dragonfly.Translation("time_set", w.Name(), t))
 }

@@ -10,7 +10,7 @@
         "already_not_operator": "§7Nothing changed! §f%s §7is not a Server Operator",
         "operator_withdrawn": "§7You have removed the §cOperator Access §7from §f%s",
         "broadcast_say": "§d%s says: %s",
-        "weather_changed": "§7Changing the weather to §f%s",
+        "weather_changed": "§7Changing the weather to §f%s §7in §f%s",
         "unknown_weather": "§cUnknown weather %s",
         "world_not_found": "§7World with the name §f%s §7is not loaded!",
         "world_loaded": "§7World with the name §f%s §7has been loaded! §7[ Dimension = §f%s§7, Generator = §f%s§7 ]",
