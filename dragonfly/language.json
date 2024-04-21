@@ -23,7 +23,9 @@
         "whisper": "§f%s §7whispers: §f%s",
         "added_to_time": "§7Added §f%d §7to the time of the world §f%s",
         "time_query": "§7Current time in §f%s §7is §f%d",
-        "time_set": "§7Set time in §f%s §7to §f%d"
+        "time_set": "§7Set time in §f%s §7to §f%d",
+        "killed_player": "§7You have killed the player §f%s",
+        "killed": "§7You have been killed by a §fServer Operator"
     },
     "toasts": {
         "operator_access_granted": {

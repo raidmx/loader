@@ -15,4 +15,5 @@ func RegisterVanillaCommands() {
 	cmd.Register(cmd.New("multiworld", "Multiworld System", []string{"mw"}, commands.MWLoad{}, commands.MWUnload{}, commands.MWTeleport{}, commands.MWList{}))
 	cmd.Register(cmd.New("tell", "Message a player", []string{"msg"}, commands.Tell{}))
 	cmd.Register(cmd.New("time", "Time management", []string{}, commands.TimeAdd{}, commands.TimeQuery{}, commands.TimeSet{}, commands.TimeSetSpec{}))
+	cmd.Register(cmd.New("kill", "Kills a player", []string{""}, commands.Kill{}))
 }

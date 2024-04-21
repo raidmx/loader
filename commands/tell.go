@@ -32,6 +32,6 @@ func (c Tell) Run(src cmd.Source, o *cmd.Output) {
 		return
 	}
 
-	p.Session().SendMessage(dragonfly.Translation("tell", sender, p.Name(), msg))
+	p.Message(dragonfly.Translation("tell", sender, p.Name(), msg))
 	o.Printf(dragonfly.Translation("tell", sender, p.Name(), msg))
 }
