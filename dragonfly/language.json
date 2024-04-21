@@ -18,7 +18,12 @@
         "world_unloaded": "§7World with the name §f%s §7has been unloaded!",
         "teleported_to_world": "§7You have been teleported to the world §f%s",
         "loaded_worlds_count": "§7There are currently §f%d §7worlds loaded.",
-        "loaded_world_entry": "§7World Name: §f%s §7 - Dimension: §f%v"
+        "loaded_world_entry": "§7World Name: §f%s §7 - Dimension: §f%v",
+        "tell": "§e%s §7-> §e%s§7: §f%s",
+        "whisper": "§f%s §7whispers: §f%s",
+        "added_to_time": "§7Added §f%d §7to the time of the world §f%s",
+        "time_query": "§7Current time in §f%s §7is §f%d",
+        "time_set": "§7Set time in §f%s §7to §f%d"
     },
     "toasts": {
         "operator_access_granted": {

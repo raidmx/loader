@@ -11,14 +11,14 @@ import (
 // FakeBlockRegistry is the registry of all the fake blocks spawned in the
 // server.
 type FakeBlockRegistry struct {
-	mu   *sync.Mutex
+	mu   *sync.RWMutex
 	list []*FakeBlock
 }
 
 // fakeblocks is an instance of FakeBlockRegistry storing all the fake blocks
 // spawned in the server.
 var fakeblocks = FakeBlockRegistry{
-	mu:   &sync.Mutex{},
+	mu:   &sync.RWMutex{},
 	list: []*FakeBlock{},
 }
 
@@ -57,6 +57,21 @@ func New(w *world.World, pos cube.Pos, block world.Block) *FakeBlock {
 	return fb
 }
 
+// Get returns the fake block at the passed position in the provided world.
+// Returns nil if no fake block exists at the provided position.
+func Get(w *world.World, pos cube.Pos) *FakeBlock {
+	defer fakeblocks.mu.RUnlock()
+	fakeblocks.mu.RLock()
+
+	for _, fb := range fakeblocks.list {
+		if fb.world == w && fb.pos == pos {
+			return fb
+		}
+	}
+
+	return nil
+}
+
 // AddViewer adds a viewer for the fake block
 func (fb *FakeBlock) AddViewer(p *player.Player) {
 	defer fb.mu.Unlock()
@@ -75,12 +90,19 @@ func (fb *FakeBlock) RemoveViewer(p *player.Player) {
 	delete(fb.viewers, p.XUID())
 }
 
-// Despawn removes the fake block for all the players in the world
-func (fb *FakeBlock) Despawn() {
+// Destroy destroys the fake block for all the players in the world
+func (fb *FakeBlock) Destroy() {
 	defer fb.mu.Unlock()
 	fb.mu.Lock()
 
 	for _, p := range fb.viewers {
 		p.Session().ViewBlockUpdate(fb.pos, fb.original, 0)
+	}
+
+	for index, fakeblock := range fakeblocks.list {
+		if fakeblock.world == fb.world && fakeblock.pos == fb.pos {
+			fakeblocks.list[index] = fakeblocks.list[len(fakeblocks.list)-1]
+			fakeblocks.list = fakeblocks.list[:len(fakeblocks.list)-1]
+		}
 	}
 }

@@ -17,9 +17,11 @@ type Weather struct {
 
 // Run ..
 func (c Weather) Run(src cmd.Source, o *cmd.Output) {
-	p := src.(*player.Player)
+	w := dragonfly.Server.Overworld()
+	if p, ok := src.(*player.Player); ok {
+		w = p.World()
+	}
 
-	w := p.World()
 	t := time.Duration(c.Duration.LoadOr(60)) * time.Second
 
 	switch c.Weather {
@@ -42,7 +44,9 @@ func (c Weather) Run(src cmd.Source, o *cmd.Output) {
 
 // Allow ...
 func (c Weather) Allow(src cmd.Source) bool {
-	if _, ok := src.(*player.Player); ok {
+	s, isPlayer := src.(*player.Player)
+
+	if isPlayer && !dragonfly.IsOP(s.XUID()) {
 		return false
 	}
 
