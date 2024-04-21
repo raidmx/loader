@@ -28,11 +28,11 @@ func (c TransferServer) Run(src cmd.Source, o *cmd.Output) {
 			continue
 		}
 
-		p.Message(dragonfly.Translation("server_transfer", addr))
+		p.Message(dragonfly.Translation("server_transfer_target", addr))
 		count += 1
 	}
 
-	o.Printf(dragonfly.Translation("transfered", count, addr))
+	o.Printf(dragonfly.Translation("server_transfer_sender", count, addr))
 
 	go func() {
 		time.Sleep(time.Second * 2)

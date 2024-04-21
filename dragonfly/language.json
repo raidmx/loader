@@ -28,9 +28,11 @@
         "killed": "§7You have been killed by a §fServer Operator",
         "teleported": "§7You have been teleported to X = §f%f §7, Y = §f%f §7, Z = §f%f",
         "set_world_spawn": "§7Set the world spawn to X = §f%d §7, Y = §f%d §7, Z = §f%d",
-        "server_transfer": "§7You are being transfered to the server §f%s",
-        "transfered": "§7You are transfering §f%d §7players to the address §f%s",
-        "set_default_gamemode": "§7The default gamemode has been set to §f%s §7for the world §f%s"
+        "server_transfer_target": "§7You are being transfered to the server §f%s",
+        "server_transfer_sender": "§7You are transfering §f%d §7players to the address §f%s",
+        "set_default_gamemode": "§7The default gamemode has been set to §f%s §7for the world §f%s",
+        "inventory_cleared_target": "§f%d §7items were cleared from your §f%s §7Inventory by §f%s",
+        "inventory_cleared_sender": "§7Clearing §f%d §7items from §f%s's %s §7Inventory."
     },
     "toasts": {
         "operator_access_granted": {
