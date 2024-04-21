@@ -19,4 +19,5 @@ func RegisterVanillaCommands() {
 	cmd.Register(cmd.New("teleport", "Teleports you the specified position", []string{"tp"}, commands.Teleport{}))
 	cmd.Register(cmd.New("setworldspawn", "Sets the world spawn", []string{}, commands.SetWorldSpawn{}))
 	cmd.Register(cmd.New("transfer", "Transfer a player to another server", []string{}, commands.TransferServer{}))
+	cmd.Register(cmd.New("defaultgamemode", "Sets the default gamemode for the provided world", []string{}, commands.DefaultGamemode{}))
 }
