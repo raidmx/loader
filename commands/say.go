@@ -2,6 +2,9 @@ package commands
 
 import (
 	"github.com/STCraft/DFLoader/dragonfly"
+	"github.com/STCraft/DFLoader/libraries/fakeblock"
+	"github.com/STCraft/dragonfly/server/block"
+	"github.com/STCraft/dragonfly/server/block/cube"
 	"github.com/STCraft/dragonfly/server/cmd"
 	"github.com/STCraft/dragonfly/server/player"
 )
@@ -19,6 +22,14 @@ func (c Say) Run(src cmd.Source, o *cmd.Output) {
 
 	if p, ok := src.(*player.Player); ok {
 		sender = p.Name()
+
+		pos := cube.PosFromVec3(p.Position())
+		b := block.NewChest()
+
+		fb := fakeblock.New(p.World(), pos, b)
+		fb.AddViewer(p)
+
+		p.Session().OpenFakeContainer(pos, b)
 	}
 
 	dragonfly.Server.Broadcast(dragonfly.Translation("broadcast_say", sender, msg))

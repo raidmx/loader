@@ -32,8 +32,8 @@ type FakeBlock struct {
 	original world.Block
 	block    world.Block
 
-	pos   cube.Pos
 	world *world.World
+	pos   cube.Pos
 
 	mu      *sync.Mutex
 	viewers map[string]*player.Player
@@ -72,31 +72,55 @@ func Get(w *world.World, pos cube.Pos) *FakeBlock {
 	return nil
 }
 
-// AddViewer adds a viewer for the fake block
-func (fb *FakeBlock) AddViewer(p *player.Player) {
+// World returns the world the fakeblock is spawned in
+func (fb *FakeBlock) World() *world.World {
+	return fb.world
+}
+
+// Pos returns the position of the fake block
+func (fb *FakeBlock) Pos() cube.Pos {
+	return fb.pos
+}
+
+// AddViewer adds a viewer for the fake block and returns whether the operation
+// was successful
+func (fb *FakeBlock) AddViewer(p *player.Player) bool {
 	defer fb.mu.Unlock()
 	fb.mu.Lock()
+
+	if p.World() != fb.world {
+		return false
+	}
 
 	p.Session().ViewBlockUpdate(fb.pos, fb.block, 0)
 	fb.viewers[p.XUID()] = p
+
+	return true
 }
 
-// RemoveViewer removes the viewer for the fake block
-func (fb *FakeBlock) RemoveViewer(p *player.Player) {
+// RemoveViewer removes the viewer for the fake block and returns whether
+// the operation was successful
+func (fb *FakeBlock) RemoveViewer(p *player.Player) bool {
 	defer fb.mu.Unlock()
 	fb.mu.Lock()
 
+	if p.World() != fb.world {
+		return false
+	}
+
 	p.Session().ViewBlockUpdate(fb.pos, fb.original, 0)
 	delete(fb.viewers, p.XUID())
+
+	return true
 }
 
 // Destroy destroys the fake block for all the players in the world
 func (fb *FakeBlock) Destroy() {
-	defer fb.mu.Unlock()
-	fb.mu.Lock()
+	defer fakeblocks.mu.Unlock()
+	fakeblocks.mu.Lock()
 
 	for _, p := range fb.viewers {
-		p.Session().ViewBlockUpdate(fb.pos, fb.original, 0)
+		fb.RemoveViewer(p)
 	}
 
 	for index, fakeblock := range fakeblocks.list {
