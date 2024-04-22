@@ -51,12 +51,23 @@ type FakeInventory struct {
 
 // New creates and returns a new Fake Inventory at the specified position
 func New(w *world.World, pos cube.Pos, inventoryType byte) *FakeInventory {
-	container := block.NewChest()
-	fakeblock := fakeblock.New(w, pos, container)
+	var b world.Block
+
+	switch inventoryType {
+	case FakeInventoryTypeChest:
+		b = block.NewChest(block.ChestTypeSingle)
+	case FakeInventoryTypeHopper:
+		b = block.NewHopper()
+	case FakeInventoryTypeDispenser:
+		b = block.NewDispenser()
+	}
+
+	container := b.(block.Container)
+	fb := fakeblock.New(w, pos, b)
 
 	fakeinventory := &FakeInventory{
 		container: container,
-		fakeblock: fakeblock,
+		fakeblock: fb,
 		mu:        sync.RWMutex{},
 		viewers:   map[string]FakeViewer{},
 	}
