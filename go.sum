@@ -4,6 +4,10 @@ github.com/STCraft/dragonfly v0.0.0-20240422040201-38e295b82084 h1:krbjpr/9krHTi
 github.com/STCraft/dragonfly v0.0.0-20240422040201-38e295b82084/go.mod h1:gKwvqzKbqjHX23VnU+ImffT4iMB7XQOaFmTfy0D4yd4=
 github.com/STCraft/dragonfly v0.0.0-20240422051440-afa92ec2fc3a h1:Sdqc5TeRNR5gb76crQrSS9KvunzoQq0lPYul9DxVZGQ=
 github.com/STCraft/dragonfly v0.0.0-20240422051440-afa92ec2fc3a/go.mod h1:gKwvqzKbqjHX23VnU+ImffT4iMB7XQOaFmTfy0D4yd4=
+github.com/STCraft/dragonfly v0.0.0-20240422052705-b3fe59dfe019 h1:kwTGO/2sUQy7KYBq3W1T8f0bnui98plbk70XCN3UF9M=
+github.com/STCraft/dragonfly v0.0.0-20240422052705-b3fe59dfe019/go.mod h1:gKwvqzKbqjHX23VnU+ImffT4iMB7XQOaFmTfy0D4yd4=
+github.com/STCraft/dragonfly v0.0.0-20240422055754-b2342e6f20f8 h1:yOcYWCxBW1uY/GJ4h3shpdvrjbrPthJr5WmHfrx6oxA=
+github.com/STCraft/dragonfly v0.0.0-20240422055754-b2342e6f20f8/go.mod h1:gKwvqzKbqjHX23VnU+ImffT4iMB7XQOaFmTfy0D4yd4=
 github.com/brentp/intintmap v0.0.0-20190211203843-30dc0ade9af9 h1:/G0ghZwrhou0Wq21qc1vXXMm/t/aKWkALWwITptKbE0=
 github.com/brentp/intintmap v0.0.0-20190211203843-30dc0ade9af9/go.mod h1:TOk10ahXejq9wkEaym3KPRNeuR/h5Jx+s8QRWIa2oTM=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
