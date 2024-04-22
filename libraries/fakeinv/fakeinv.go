@@ -6,6 +6,7 @@ import (
 	"github.com/STCraft/DFLoader/libraries/fakeblock"
 	"github.com/STCraft/dragonfly/server/block"
 	"github.com/STCraft/dragonfly/server/block/cube"
+	"github.com/STCraft/dragonfly/server/item/inventory"
 	"github.com/STCraft/dragonfly/server/player"
 	"github.com/STCraft/dragonfly/server/world"
 )
@@ -56,6 +57,8 @@ func New(w *world.World, pos cube.Pos, inventoryType byte) *FakeInventory {
 	fakeinventory := &FakeInventory{
 		container: container,
 		fakeblock: fakeblock,
+		mu:        sync.RWMutex{},
+		viewers:   map[string]FakeViewer{},
 	}
 
 	defer fakeinventories.mu.Unlock()
@@ -73,6 +76,11 @@ func (inv *FakeInventory) World() *world.World {
 // Pos returns the position of the fake inventory
 func (inv *FakeInventory) Pos() cube.Pos {
 	return inv.fakeblock.Pos()
+}
+
+// Inventory returns the fake block container inventory
+func (inv *FakeInventory) Inventory() *inventory.Inventory {
+	return inv.container.Inventory()
 }
 
 // AddViewer adds a player to view the fake inventory and returns whether
