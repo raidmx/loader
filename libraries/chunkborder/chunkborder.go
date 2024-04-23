@@ -45,7 +45,7 @@ func New(p cube.Pos, w *world.World) *ChunkBorder {
 	pos := cube.Pos{cornerX, cornerY, cornerZ}
 	b := block.StructureBlock{X: int32(cornerX), Y: int32(cornerY), Z: int32(cornerZ)}
 
-	fb := fakeblock.New(w, pos, b)
+	fb := fakeblock.New(pos, w, b)
 	cb := &ChunkBorder{
 		chunkX:    cx,
 		chunkZ:    cz,

@@ -40,7 +40,7 @@ type FakeBlock struct {
 }
 
 // Creates and returns a new FakeBlock
-func New(w *world.World, pos cube.Pos, block world.Block) *FakeBlock {
+func New(pos cube.Pos, w *world.World, block world.Block) *FakeBlock {
 	fb := &FakeBlock{
 		original: w.Block(pos),
 		block:    block,

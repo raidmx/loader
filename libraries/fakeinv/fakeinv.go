@@ -2,6 +2,7 @@ package fakeinv
 
 import (
 	"sync"
+	"time"
 
 	"github.com/STCraft/DFLoader/libraries/fakeblock"
 	"github.com/STCraft/dragonfly/server/block"
@@ -12,10 +13,10 @@ import (
 )
 
 const (
-	FakeInventoryTypeChest byte = iota
-	FakeInventoryTypeDoubleChest
-	FakeInventoryTypeHopper
-	FakeInventoryTypeDispenser
+	InventoryTypeChest byte = iota
+	InventoryTypeDoubleChest
+	InventoryTypeHopper
+	InventoryTypeDispenser
 )
 
 // FakeInventoryRegistry is the registry of all the FakeInventories on the server
@@ -42,34 +43,71 @@ type FakeViewer struct {
 // client side inventory menu over a container that is a fake block which
 // is only visible to the specified players.
 type FakeInventory struct {
-	fakeblock *fakeblock.FakeBlock
-	container block.Container
+	inventoryType byte
+
+	fakeblocks []*fakeblock.FakeBlock
+	container  block.Container
 
 	mu      sync.RWMutex
 	viewers map[string]FakeViewer
 }
 
 // New creates and returns a new Fake Inventory at the specified position
-func New(w *world.World, pos cube.Pos, inventoryType byte) *FakeInventory {
-	var b world.Block
+func New(pos cube.Pos, w *world.World, inventoryType byte) *FakeInventory {
+	var fakeblocks []*fakeblock.FakeBlock
+	var container block.Container
 
 	switch inventoryType {
-	case FakeInventoryTypeChest:
-		b = block.NewChest(block.ChestTypeSingle)
-	case FakeInventoryTypeHopper:
-		b = block.NewHopper()
-	case FakeInventoryTypeDispenser:
-		b = block.NewDispenser()
+	case InventoryTypeChest:
+		c := block.NewChest(block.ChestTypeSingle)
+
+		fakeblocks = append(fakeblocks, fakeblock.New(pos, w, c))
+		container = c
+	case InventoryTypeDoubleChest:
+		// Calculate the neighbour position and spawn the first pair of the chest
+		neighbour := pos.Add(cube.Pos{1, 0, 0})
+		c := block.NewChest(block.ChestTypeDouble)
+		c.Facing = cube.North
+
+		// Create another chest of a certain inventory type and set the
+		// facing and inventory same as previous chest
+		pair := block.NewChest(block.ChestTypeDouble)
+		pair.Facing = c.Facing
+		pair.SetInventory(c.Inventory())
+
+		// Set the pairing values for this chest to link to the second
+		// chest
+		c.Paired = true
+		c.PairX = int32(neighbour[0])
+		c.PairZ = int32(neighbour[2])
+
+		// Set the pairing values for other chest to link to first
+		// chest
+		pair.Paired = true
+		pair.PairX = int32(pos[0])
+		pair.PairZ = int32(pos[2])
+
+		// Spawn the fakeblocks for both the chest pairs and set the container to the first chest
+		fakeblocks = append(fakeblocks, fakeblock.New(pos, w, c), fakeblock.New(neighbour, w, pair))
+		container = c
+	case InventoryTypeHopper:
+		h := block.NewHopper()
+
+		fakeblocks = append(fakeblocks, fakeblock.New(pos, w, h))
+		container = h
+	case InventoryTypeDispenser:
+		d := block.NewDispenser()
+
+		fakeblocks = append(fakeblocks, fakeblock.New(pos, w, d))
+		container = d
 	}
 
-	container := b.(block.Container)
-	fb := fakeblock.New(w, pos, b)
-
 	fakeinventory := &FakeInventory{
-		container: container,
-		fakeblock: fb,
-		mu:        sync.RWMutex{},
-		viewers:   map[string]FakeViewer{},
+		inventoryType: inventoryType,
+		fakeblocks:    fakeblocks,
+		container:     container,
+		mu:            sync.RWMutex{},
+		viewers:       map[string]FakeViewer{},
 	}
 
 	defer fakeinventories.mu.Unlock()
@@ -81,12 +119,12 @@ func New(w *world.World, pos cube.Pos, inventoryType byte) *FakeInventory {
 
 // World returns the world the fake inventory is spawned in
 func (inv *FakeInventory) World() *world.World {
-	return inv.fakeblock.World()
+	return inv.fakeblocks[0].World()
 }
 
 // Pos returns the position of the fake inventory
 func (inv *FakeInventory) Pos() cube.Pos {
-	return inv.fakeblock.Pos()
+	return inv.fakeblocks[0].Pos()
 }
 
 // Inventory returns the fake block container inventory
@@ -100,17 +138,35 @@ func (inv *FakeInventory) AddViewer(p *player.Player) bool {
 	defer inv.mu.Unlock()
 	inv.mu.Lock()
 
-	if !inv.fakeblock.AddViewer(p) {
-		return false
+	for _, fb := range inv.fakeblocks {
+		if !fb.AddViewer(p) {
+			return false
+		}
 	}
 
-	pos := inv.Pos()
-	windowID := p.Session().OpenFakeContainer(pos, inv.container)
+	/*
+	 * If the inventory type is of kind Double Chest then we must open the container for the
+	 * player after atleast one tick to allow the pairing to complete client side.
+	 */
+	var duration time.Duration
 
-	inv.viewers[p.Name()] = FakeViewer{
-		p:        p,
-		windowID: windowID,
+	switch inv.inventoryType {
+	case InventoryTypeDoubleChest:
+		duration = time.Millisecond * 55
+	default:
+		duration = time.Second * 0
 	}
+
+	time.AfterFunc(duration, func() {
+		pos := inv.Pos()
+		windowID := p.Session().OpenFakeContainer(pos, inv.container)
+
+		inv.viewers[p.Name()] = FakeViewer{
+			p:        p,
+			windowID: windowID,
+		}
+	})
+
 	return true
 }
 
@@ -139,7 +195,13 @@ func (inv *FakeInventory) RemoveViewer(p *player.Player) bool {
 	inv.container.RemoveViewer(p.Session(), p.World(), inv.Pos())
 	p.Session().CloseFakeContainer()
 
-	return !inv.fakeblock.RemoveViewer(p)
+	for _, fb := range inv.fakeblocks {
+		if !fb.RemoveViewer(p) {
+			return false
+		}
+	}
+
+	return false
 }
 
 // Destroy tries to destroy the fake inventory by removing all the opened containers
@@ -159,5 +221,7 @@ func (inv *FakeInventory) Destroy() {
 		}
 	}
 
-	inv.fakeblock.Destroy()
+	for _, fb := range inv.fakeblocks {
+		fb.Destroy()
+	}
 }

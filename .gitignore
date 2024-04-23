@@ -1,6 +1,5 @@
 config.toml
 /*.json
-main.go
 /players
 /resources
 /worlds
