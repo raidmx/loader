@@ -23,7 +23,7 @@ require (
 	github.com/sandertv/go-raknet v1.13.0 // indirect
 	github.com/sandertv/gophertunnel v1.36.0 // indirect
 	github.com/segmentio/fasthash v1.0.3 // indirect
-	github.com/sirupsen/logrus v1.9.3 // indirect
+	github.com/sirupsen/logrus v1.9.3
 	golang.org/x/crypto v0.22.0 // indirect
 	golang.org/x/exp v0.0.0-20240404231335-c0f41cb1a7a0 // indirect
 	golang.org/x/image v0.15.0 // indirect
