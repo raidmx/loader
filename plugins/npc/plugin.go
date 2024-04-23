@@ -1,22 +1,21 @@
-package staffmode
+package npc
 
 import (
 	"github.com/STCraft/DFLoader/dragonfly"
-	"github.com/STCraft/dragonfly/server/cmd"
 )
 
-// Plugin is a Staff Mode Plugin
+// Plugin represents a NPC plugin
 type Plugin struct {
 }
 
 // Name ...
 func (Plugin) Name() string {
-	return "Staff Mode"
+	return "NPC"
 }
 
 // Description ...
 func (Plugin) Description() string {
-	return "Adds support for Staff Mode"
+	return "Adds support for spawning Non Playable Characters"
 }
 
 // Author ...
@@ -31,8 +30,7 @@ func (Plugin) Version() string {
 
 // OnLoad ...
 func (Plugin) OnLoad() {
-	dragonfly.Server.RegisterHandler("staffmode", handler{})
-	cmd.Register(cmd.New("staffmode", "Toggles Staff Mode", []string{"sm"}, Toggle{}))
+	dragonfly.Server.RegisterHandler("npc", handler{})
 }
 
 // OnUnload ...

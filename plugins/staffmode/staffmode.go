@@ -3,8 +3,11 @@ package staffmode
 import (
 	"sync"
 
+	"github.com/STCraft/dragonfly/server/block"
+	"github.com/STCraft/dragonfly/server/block/cube"
 	"github.com/STCraft/dragonfly/server/item"
 	"github.com/STCraft/dragonfly/server/player"
+	"github.com/go-gl/mathgl/mgl64"
 )
 
 // StaffModeRegistry is the registry of all the Staff Members that have
@@ -21,16 +24,31 @@ var staffMembers = StaffModeRegistry{
 	list: map[*player.Player]StaffMember{},
 }
 
-// StaffMember is a player who has enabled staff mode currently
+// StaffMember stores the data of a Staff Member that is currently in Staff Mode
+// to be restored when they are back
 type StaffMember struct {
 	main   []item.Stack
 	armour []item.Stack
+
+	health float64
+	food   int
+
+	pos mgl64.Vec3
+	rot cube.Rotation
 }
 
 // inventoryItems is a list of Staff Mode items that are given to a player
 // when they enter Staff Mode.
 var inventoryItems = map[int]item.Stack{
-	1: item.NewStack(item.AmethystShard{}, 1),
+	0: item.NewStack(item.Dye{Colour: item.ColourRed()}, 1),
+	1: item.NewStack(item.Spyglass{}, 1),
+	2: item.NewStack(block.BlueIce{}, 1),
+	3: item.NewStack(item.Clock{}, 1),
+	4: item.NewStack(block.EnderChest{}, 1),
+	5: item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 1),
+	6: item.NewStack(item.EnderPearl{}, 1),
+	7: item.NewStack(item.Axe{Tier: item.ToolTierGold}, 1),
+	8: item.NewStack(item.EnchantedBook{}, 1),
 }
 
 // armourItems is a list of Staff Mode items that are added in the player's
@@ -47,9 +65,20 @@ func enable(p *player.Player) {
 	defer staffMembers.mu.Unlock()
 	staffMembers.mu.Lock()
 
+	health := p.Health()
+	food := p.Food()
+
+	p.EnableFlight()
+	p.SetHealth(p.MaxHealth())
+	p.SetFood(20)
+
 	staffMembers.list[p] = StaffMember{
 		main:   p.Inventory().Items(),
 		armour: p.Armour().Items(),
+		health: health,
+		food:   food,
+		pos:    p.Position(),
+		rot:    p.Rotation(),
 	}
 
 	p.Inventory().Clear()
@@ -88,6 +117,10 @@ func disable(p *player.Player) {
 
 	staff := staffMembers.list[p]
 	delete(staffMembers.list, p)
+
+	p.DisableFlight()
+	p.SetHealth(staff.health)
+	p.SetFood(staff.food)
 
 	p.Inventory().Clear()
 	p.Armour().Inventory().Clear()
