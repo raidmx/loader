@@ -32,7 +32,8 @@
         "server_transfer_sender": "§7You are transfering §f%d §7players to the address §f%s",
         "set_default_gamemode": "§7The default gamemode has been set to §f%s §7for the world §f%s",
         "inventory_cleared_target": "§f%d §7items were cleared from your §f%s §7Inventory by §f%s",
-        "inventory_cleared_sender": "§7Clearing §f%d §7items from §f%s's %s §7Inventory."
+        "inventory_cleared_sender": "§7Clearing §f%d §7items from §f%s's %s §7Inventory.",
+        "whispers": "§f%s §7whispers: §f%s"
     },
     "toasts": {
         "operator_access_granted": {
