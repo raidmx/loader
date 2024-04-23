@@ -12,6 +12,8 @@ github.com/STCraft/dragonfly v0.0.0-20240423053217-4b4b9481d0f1 h1:ePnoBfd42I7eL
 github.com/STCraft/dragonfly v0.0.0-20240423053217-4b4b9481d0f1/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
 github.com/STCraft/dragonfly v0.0.0-20240423054731-c22923fd5570 h1:9SQ5u+jgFrPB6x2B3GOI80curIcXBJf6SWZAfmeqY2Y=
 github.com/STCraft/dragonfly v0.0.0-20240423054731-c22923fd5570/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
+github.com/STCraft/dragonfly v0.0.0-20240423073307-42d7793c45a9 h1:JEhQ5WlfKimfxZuIjgZzkxN9/GL12pYYYGbiqxv7m7w=
+github.com/STCraft/dragonfly v0.0.0-20240423073307-42d7793c45a9/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
 github.com/STCraft/intintmap v0.0.0-20240422151941-3d281c7c7cb6 h1:H0bsrrneljIOOG0tmKSovNmKJ0o5qiHDUSLKqyZL6mw=
 github.com/STCraft/intintmap v0.0.0-20240422151941-3d281c7c7cb6/go.mod h1:igRwOzVRi/LUaXSJzJ3hH69FfwIySOO+UNDILZiRGso=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
