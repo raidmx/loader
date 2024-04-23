@@ -2,6 +2,7 @@ package loader
 
 import (
 	"github.com/STCraft/DFLoader/dragonfly"
+	"github.com/STCraft/DFLoader/libraries/npc"
 	"github.com/STCraft/DFLoader/registry"
 	"github.com/STCraft/dragonfly/server"
 )
@@ -17,6 +18,7 @@ func Init() {
 
 	dragonfly.Server = server.New()
 	dragonfly.Server.RegisterHandler("user", dragonfly.UserHandler{})
+	dragonfly.Server.RegisterHandler("npc", npc.Handler{})
 }
 
 // Start starts the Dragonfly server. This is a blocking function.

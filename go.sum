@@ -6,6 +6,12 @@ github.com/STCraft/dragonfly v0.0.0-20240423041554-ebb768ac6b5f h1:aoaV9+KndXHVk
 github.com/STCraft/dragonfly v0.0.0-20240423041554-ebb768ac6b5f/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
 github.com/STCraft/dragonfly v0.0.0-20240423041821-7870a49da805 h1:HTLKVyWxBs0PtJZc8emINac7gO6ZlHkyg/29SAVrQVw=
 github.com/STCraft/dragonfly v0.0.0-20240423041821-7870a49da805/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
+github.com/STCraft/dragonfly v0.0.0-20240423052358-38b0da50715f h1:9Hq3NcWD1Z9tPxSn8Z+8JGo15ZKFTp6Wek3I27oQOOc=
+github.com/STCraft/dragonfly v0.0.0-20240423052358-38b0da50715f/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
+github.com/STCraft/dragonfly v0.0.0-20240423053217-4b4b9481d0f1 h1:ePnoBfd42I7eLElpMDTtvwPulrBEG7jPK5UnKBuas8s=
+github.com/STCraft/dragonfly v0.0.0-20240423053217-4b4b9481d0f1/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
+github.com/STCraft/dragonfly v0.0.0-20240423054731-c22923fd5570 h1:9SQ5u+jgFrPB6x2B3GOI80curIcXBJf6SWZAfmeqY2Y=
+github.com/STCraft/dragonfly v0.0.0-20240423054731-c22923fd5570/go.mod h1:AweicAi412rsHE+o+3qSgF0BzCayv3rX4ct/ZKBLuR0=
 github.com/STCraft/intintmap v0.0.0-20240422151941-3d281c7c7cb6 h1:H0bsrrneljIOOG0tmKSovNmKJ0o5qiHDUSLKqyZL6mw=
 github.com/STCraft/intintmap v0.0.0-20240422151941-3d281c7c7cb6/go.mod h1:igRwOzVRi/LUaXSJzJ3hH69FfwIySOO+UNDILZiRGso=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
