@@ -33,7 +33,9 @@
         "set_default_gamemode": "§7The default gamemode has been set to §f%s §7for the world §f%s",
         "inventory_cleared_target": "§f%d §7items were cleared from your §f%s §7Inventory by §f%s",
         "inventory_cleared_sender": "§7Clearing §f%d §7items from §f%s's %s §7Inventory.",
-        "whispers": "§f%s §7whispers: §f%s"
+        "whispers": "§f%s §7whispers: §f%s",
+        "staff_mode_enabled": "§6Staff Mode has been Enabled.\nPlease be cautious. Your activity is being monitored.",
+        "staff_mode_disabled": "§cStaff Mode has been Disabled."
     },
     "toasts": {
         "operator_access_granted": {

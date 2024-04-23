@@ -1,5 +1,7 @@
 package staffmode
 
+import "github.com/STCraft/dragonfly/server/cmd"
+
 type Plugin struct {
 }
 
@@ -20,6 +22,7 @@ func (Plugin) Version() string {
 }
 
 func (Plugin) OnLoad() {
+	cmd.Register(cmd.New("staffmode", "Toggles Staff Mode", []string{"sm"}, Toggle{}))
 }
 
 func (Plugin) OnUnload() {
