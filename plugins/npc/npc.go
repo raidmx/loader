@@ -4,10 +4,10 @@ import (
 	"math"
 	"time"
 
-	"github.com/STCraft/dragonfly/server/block/cube"
-	"github.com/STCraft/dragonfly/server/player"
-	"github.com/STCraft/dragonfly/server/world"
 	"github.com/go-gl/mathgl/mgl64"
+	"github.com/stcraft/dragonfly/server/block/cube"
+	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/world"
 )
 
 // NPCType is a world.EntityType implementation for NPC.

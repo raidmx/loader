@@ -1,8 +1,8 @@
 package registry
 
 import (
-	"github.com/STCraft/DFLoader/commands"
-	"github.com/STCraft/dragonfly/server/cmd"
+	"github.com/stcraft/DFLoader/commands"
+	"github.com/stcraft/dragonfly/server/cmd"
 )
 
 // RegisterVanillaCommands registers all the default vanilla commands to the dragonfly server.

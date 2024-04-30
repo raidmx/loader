@@ -3,10 +3,10 @@ package commands
 import (
 	"fmt"
 
-	"github.com/STCraft/DFLoader/dragonfly"
-	"github.com/STCraft/dragonfly/server/cmd"
-	"github.com/STCraft/dragonfly/server/entity/effect"
-	"github.com/STCraft/dragonfly/server/player"
+	"github.com/stcraft/DFLoader/dragonfly"
+	"github.com/stcraft/dragonfly/server/cmd"
+	"github.com/stcraft/dragonfly/server/entity/effect"
+	"github.com/stcraft/dragonfly/server/player"
 )
 
 // Kill command is used to kill the specified player

@@ -3,13 +3,13 @@ package staffmode
 import (
 	"time"
 
-	"github.com/STCraft/dragonfly/server/block/cube"
-	"github.com/STCraft/dragonfly/server/event"
-	"github.com/STCraft/dragonfly/server/item"
-	"github.com/STCraft/dragonfly/server/player"
-	"github.com/STCraft/dragonfly/server/player/skin"
-	"github.com/STCraft/dragonfly/server/world"
 	"github.com/go-gl/mathgl/mgl64"
+	"github.com/stcraft/dragonfly/server/block/cube"
+	"github.com/stcraft/dragonfly/server/event"
+	"github.com/stcraft/dragonfly/server/item"
+	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/player/skin"
+	"github.com/stcraft/dragonfly/server/world"
 )
 
 // handler is a Staff Mode Handler that prevents Staff from abusing by breaking

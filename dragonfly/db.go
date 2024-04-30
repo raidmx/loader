@@ -5,8 +5,8 @@ import (
 	_ "embed"
 	"fmt"
 
-	"github.com/STCraft/DFLoader/config"
 	_ "github.com/lib/pq"
+	"github.com/stcraft/DFLoader/config"
 )
 
 var DB *sql.DB

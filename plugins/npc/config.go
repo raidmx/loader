@@ -1,10 +1,10 @@
 package npc
 
 import (
-	"github.com/STCraft/dragonfly/server/player"
-	"github.com/STCraft/dragonfly/server/player/skin"
-	"github.com/STCraft/dragonfly/server/world"
 	"github.com/go-gl/mathgl/mgl64"
+	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/player/skin"
+	"github.com/stcraft/dragonfly/server/world"
 )
 
 const (

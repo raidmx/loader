@@ -3,11 +3,11 @@ package chunkborder
 import (
 	"sync"
 
-	"github.com/STCraft/DFLoader/libraries/fakeblock"
-	"github.com/STCraft/dragonfly/server/block"
-	"github.com/STCraft/dragonfly/server/block/cube"
-	"github.com/STCraft/dragonfly/server/player"
-	"github.com/STCraft/dragonfly/server/world"
+	"github.com/stcraft/DFLoader/libraries/fakeblock"
+	"github.com/stcraft/dragonfly/server/block"
+	"github.com/stcraft/dragonfly/server/block/cube"
+	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/world"
 )
 
 // ChunkBorderRegistry is the registry of all the chunk borders on

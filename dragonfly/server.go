@@ -1,8 +1,8 @@
 package dragonfly
 
 import (
-	"github.com/STCraft/dragonfly/server"
 	"github.com/sirupsen/logrus"
+	"github.com/stcraft/dragonfly/server"
 )
 
 // Server is a global instance of dragonfly

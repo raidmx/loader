@@ -1,7 +1,7 @@
 package npc
 
 import (
-	"github.com/STCraft/DFLoader/dragonfly"
+	"github.com/stcraft/DFLoader/dragonfly"
 )
 
 // Plugin represents a NPC plugin

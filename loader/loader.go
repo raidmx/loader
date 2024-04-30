@@ -1,10 +1,10 @@
 package loader
 
 import (
-	"github.com/STCraft/DFLoader/dragonfly"
-	"github.com/STCraft/DFLoader/plugins"
-	"github.com/STCraft/DFLoader/registry"
-	"github.com/STCraft/dragonfly/server"
+	"github.com/stcraft/DFLoader/dragonfly"
+	"github.com/stcraft/DFLoader/plugins"
+	"github.com/stcraft/DFLoader/registry"
+	"github.com/stcraft/dragonfly/server"
 )
 
 // loadedPlugins contain a list of plugins that are registered and loaded

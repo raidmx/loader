@@ -4,8 +4,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/STCraft/dragonfly/server/event"
-	"github.com/STCraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/event"
+	"github.com/stcraft/dragonfly/server/player"
 )
 
 // DFUser represents a player that may be offline. This is useful for retrieving

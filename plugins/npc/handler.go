@@ -1,9 +1,9 @@
 package npc
 
 import (
-	"github.com/STCraft/dragonfly/server/event"
-	"github.com/STCraft/dragonfly/server/player"
-	"github.com/STCraft/dragonfly/server/world"
+	"github.com/stcraft/dragonfly/server/event"
+	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/world"
 )
 
 // handler is a NPC handler that handles the Player <-> NPC interaction events and triggers

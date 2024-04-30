@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/STCraft/DFLoader/dragonfly"
-	"github.com/STCraft/dragonfly/server/cmd"
-	"github.com/STCraft/dragonfly/server/player"
+	"github.com/stcraft/DFLoader/dragonfly"
+	"github.com/stcraft/dragonfly/server/cmd"
+	"github.com/stcraft/dragonfly/server/player"
 )
 
 // Deop can be executed from the console or by another operator to remove a player

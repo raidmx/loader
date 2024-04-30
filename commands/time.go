@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/STCraft/DFLoader/dragonfly"
-	"github.com/STCraft/dragonfly/server/cmd"
-	"github.com/STCraft/dragonfly/server/player"
+	"github.com/stcraft/DFLoader/dragonfly"
+	"github.com/stcraft/dragonfly/server/cmd"
+	"github.com/stcraft/dragonfly/server/player"
 )
 
 // spec is an enum of the various time options to choose from when

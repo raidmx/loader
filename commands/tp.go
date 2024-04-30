@@ -1,10 +1,10 @@
 package commands
 
 import (
-	"github.com/STCraft/DFLoader/dragonfly"
-	"github.com/STCraft/dragonfly/server/cmd"
-	"github.com/STCraft/dragonfly/server/player"
 	"github.com/go-gl/mathgl/mgl64"
+	"github.com/stcraft/DFLoader/dragonfly"
+	"github.com/stcraft/dragonfly/server/cmd"
+	"github.com/stcraft/dragonfly/server/player"
 )
 
 // Teleport is used to teleport a player to the provided coordinates

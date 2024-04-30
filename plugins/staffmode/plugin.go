@@ -1,8 +1,8 @@
 package staffmode
 
 import (
-	"github.com/STCraft/DFLoader/dragonfly"
-	"github.com/STCraft/dragonfly/server/cmd"
+	"github.com/stcraft/DFLoader/dragonfly"
+	"github.com/stcraft/dragonfly/server/cmd"
 )
 
 // Plugin is a Staff Mode Plugin

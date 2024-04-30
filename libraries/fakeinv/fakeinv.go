@@ -4,12 +4,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/STCraft/DFLoader/libraries/fakeblock"
-	"github.com/STCraft/dragonfly/server/block"
-	"github.com/STCraft/dragonfly/server/block/cube"
-	"github.com/STCraft/dragonfly/server/item/inventory"
-	"github.com/STCraft/dragonfly/server/player"
-	"github.com/STCraft/dragonfly/server/world"
+	"github.com/stcraft/DFLoader/libraries/fakeblock"
+	"github.com/stcraft/dragonfly/server/block"
+	"github.com/stcraft/dragonfly/server/block/cube"
+	"github.com/stcraft/dragonfly/server/item/inventory"
+	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/world"
 )
 
 const (

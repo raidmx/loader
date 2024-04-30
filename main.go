@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/STCraft/DFLoader/loader"
-	"github.com/STCraft/DFLoader/plugins/npc"
-	"github.com/STCraft/DFLoader/plugins/staffmode"
+	"github.com/stcraft/DFLoader/loader"
+	"github.com/stcraft/DFLoader/plugins/npc"
+	"github.com/stcraft/DFLoader/plugins/staffmode"
 )
 
 /*

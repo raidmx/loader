@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/STCraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/player"
 )
 
 // Toast specifies the structure in which toasts are saved in the config file.

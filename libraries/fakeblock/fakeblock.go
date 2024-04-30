@@ -3,9 +3,9 @@ package fakeblock
 import (
 	"sync"
 
-	"github.com/STCraft/dragonfly/server/block/cube"
-	"github.com/STCraft/dragonfly/server/player"
-	"github.com/STCraft/dragonfly/server/world"
+	"github.com/stcraft/dragonfly/server/block/cube"
+	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/dragonfly/server/world"
 )
 
 // FakeBlockRegistry is the registry of all the fake blocks spawned in the
