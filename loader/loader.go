@@ -1,10 +1,11 @@
 package loader
 
 import (
-	"github.com/stcraft/DFLoader/dragonfly"
-	"github.com/stcraft/DFLoader/plugins"
-	"github.com/stcraft/DFLoader/registry"
 	"github.com/stcraft/dragonfly/server"
+	"github.com/stcraft/loader/dragonfly"
+	"github.com/stcraft/loader/libraries/npc"
+	"github.com/stcraft/loader/plugins"
+	"github.com/stcraft/loader/registry"
 )
 
 // loadedPlugins contain a list of plugins that are registered and loaded
@@ -32,6 +33,7 @@ func Init() {
 
 	dragonfly.Server, dragonfly.Logger = server.New()
 	dragonfly.Server.RegisterHandler("user", dragonfly.UserHandler{})
+	dragonfly.Server.RegisterHandler("npc", npc.Handler{})
 
 	for p := range loadedPlugins {
 		dragonfly.Logger.Printf("Loading plugin %s (v%s) by %s\n", p.Name(), p.Version(), p.Author())

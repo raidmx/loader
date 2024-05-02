@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // Say broadcasts a message on behalf of the player or the Console if the message was sent

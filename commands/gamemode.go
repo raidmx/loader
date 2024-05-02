@@ -1,10 +1,10 @@
 package commands
 
 import (
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
 	"github.com/stcraft/dragonfly/server/world"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // GameMode command updates the gamemode for the provided target. If no target is provided

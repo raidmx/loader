@@ -2,11 +2,11 @@ package commands
 
 import (
 	"github.com/go-gl/mathgl/mgl64"
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/block/cube"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
 	"github.com/stcraft/dragonfly/server/world"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // Whisper command is used to whisper to nearby players

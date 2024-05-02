@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // Tell command is used to send a private message to an online player

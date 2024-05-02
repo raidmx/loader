@@ -1,10 +1,10 @@
 package commands
 
 import (
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/block/cube"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // SetWorldSpawn is used to set the world spawn of the world the command

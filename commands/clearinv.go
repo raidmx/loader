@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // ClearInv command is used to clear the inventory of a player. You can specify

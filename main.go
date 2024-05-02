@@ -1,9 +1,8 @@
 package main
 
 import (
-	"github.com/stcraft/DFLoader/loader"
-	"github.com/stcraft/DFLoader/plugins/npc"
-	"github.com/stcraft/DFLoader/plugins/staffmode"
+	"github.com/stcraft/loader/loader"
+	"github.com/stcraft/loader/plugins/staffmode"
 )
 
 /*
@@ -12,7 +11,6 @@ import (
  */
 func main() {
 	loader.LoadPlugin(staffmode.Plugin{})
-	loader.LoadPlugin(npc.Plugin{})
 
 	loader.Init()
 	loader.Start()

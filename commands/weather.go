@@ -3,9 +3,9 @@ package commands
 import (
 	"time"
 
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // Weather command is used to change the weather of the world the player is in for an optional

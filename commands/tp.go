@@ -2,9 +2,9 @@ package commands
 
 import (
 	"github.com/go-gl/mathgl/mgl64"
-	"github.com/stcraft/DFLoader/dragonfly"
 	"github.com/stcraft/dragonfly/server/cmd"
 	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/loader/dragonfly"
 )
 
 // Teleport is used to teleport a player to the provided coordinates
