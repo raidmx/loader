@@ -9,9 +9,9 @@ import (
 	"github.com/stcraft/engine/config"
 )
 
-// DatabaseConfig represents the configuration file format that
-// contains the database connection details.
-type DatabaseConfig struct {
+// dbConfig represents the configuration file format that contains
+// the database connection details.
+type dbConfig struct {
 	Address  string `json:"address"`
 	Username string `json:"username"`
 	Password string `json:"password"`
@@ -21,15 +21,15 @@ type DatabaseConfig struct {
 // DB is the global instance of the PostgreSQL database
 var DB *sql.DB
 
-//go:embed postgres.json
-var defaultDBCfg []byte
+//go:embed db.json
+var defaultDB []byte
 
 // InitDB initialises the postgreSQL database.
 func InitDB() {
-	var cfg = DatabaseConfig{}
+	var cfg = dbConfig{}
 	var err error
 
-	if err := config.Load("", "./postgres.json", &cfg, defaultDBCfg); err != nil {
+	if err := config.Load("data", "./db.json", &cfg, defaultDB); err != nil {
 		panic(err)
 	}
 

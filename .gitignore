@@ -1,5 +1,5 @@
 config.toml
-/*.json
 /players
 /resources
 /worlds
+/data

@@ -2,46 +2,29 @@ package dragonfly
 
 import (
 	_ "embed"
-	"encoding/json"
 	"fmt"
-	"os"
 
 	"github.com/stcraft/dragonfly/server/player"
+	"github.com/stcraft/engine/config"
 )
 
-// Toast specifies the structure in which toasts are saved in the config file.
-type Toast struct {
-	Title   string `json:"title"`
-	Content string `json:"content"`
-}
-
-// language specifies the structure in which translations and toasts are saved in the config
-// file.
-type language struct {
-	Messages map[string]string `json:"messages"`
-	Toasts   map[string]Toast  `json:"toasts"`
+// languageConfig specifies the structure in which translations and
+// toasts are saved in the config file.
+type languageConfig struct {
+	Messages map[string]string       `json:"messages"`
+	Toasts   map[string]config.Toast `json:"toasts"`
 }
 
 // This is an unexported instance of language translations
-var lang language
+var lang languageConfig
 
 //go:embed language.json
-var defaultLanguage []byte
+var defaultLang []byte
 
 // loadLanguage Parses the language.json file if it exists and creates a new one
 // with the default values if it doesn't exist and loads all the content.
 func LoadLanguage() {
-	content, err := os.ReadFile("./language.json")
-
-	if err != nil {
-		content = defaultLanguage
-
-		if err := os.WriteFile("./language.json", defaultLanguage, 0755); err != nil {
-			panic(err)
-		}
-	}
-
-	if err := json.Unmarshal(content, &lang); err != nil {
+	if err := config.Load("data", "language.json", &lang, defaultLang); err != nil {
 		panic(err)
 	}
 }

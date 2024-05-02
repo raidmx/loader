@@ -2,23 +2,17 @@ package dragonfly
 
 import (
 	_ "embed"
-	"encoding/json"
-	"os"
 	"sync"
+
+	"github.com/stcraft/engine/config"
 )
 
 //go:embed operators.json
-var defaultOperators []byte
+var defaultOps []byte
 
 // loadOperators loads all the operators from the operators.json file
 func LoadOperators() {
-	content, err := os.ReadFile("./operators.json")
-
-	if err != nil {
-		content = defaultOperators
-	}
-
-	if err := json.Unmarshal(content, &operators); err != nil {
+	if err := config.Load("data", "./operators.json", &operators, defaultOps); err != nil {
 		panic(err)
 	}
 
@@ -30,15 +24,7 @@ func SaveOperators() {
 	defer operators.mu.RUnlock()
 	operators.mu.RLock()
 
-	content, err := json.MarshalIndent(operators, "", "  ")
-
-	if err != nil {
-		panic(err)
-	}
-
-	os.RemoveAll("./operators.json")
-
-	if err := os.WriteFile("./operators.json", content, 0755); err != nil {
+	if err := config.Save("data", "./operators.json", operators); err != nil {
 		panic(err)
 	}
 }
