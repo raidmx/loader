@@ -52,12 +52,6 @@ github.com/sirupsen/logrus v1.9.3 h1:dueUQJ1C2q9oE3F7wvmSGAaVtTmUizReu6fjN8uqzbQ
 github.com/sirupsen/logrus v1.9.3/go.mod h1:naHLuLoDiP4jHNo9R0sCBMtWGeIprob74mVsIT4qYEQ=
 github.com/stcraft/dragonfly v0.0.0-20240502051235-c963f51018e9 h1:4/7GB7ZvajA1e5IUb12Yv6xslMb/JGnDU6nhB8jLvH8=
 github.com/stcraft/dragonfly v0.0.0-20240502051235-c963f51018e9/go.mod h1:rleHjIchcYEDWyDm3SpdKJ+9OxWmt1pHVoYyKWwA0BY=
-github.com/stcraft/engine v0.0.0-20240502084646-d42099f1dff5 h1:LeiZog4woEuXxnhxNXL0b1tlWx9dIFtM04Hgu1YveKA=
-github.com/stcraft/engine v0.0.0-20240502084646-d42099f1dff5/go.mod h1:9Gz6IzBjBE7QMz/2Xbh3O0dR/cS0sGxf6ZijhsfLp1M=
-github.com/stcraft/engine v0.0.0-20240502085413-cae3cbe9f0c7 h1:JtiiNbZaOwQF0V9XHDmpXYDpcYweJmGXFfcz9iv2UeI=
-github.com/stcraft/engine v0.0.0-20240502085413-cae3cbe9f0c7/go.mod h1:9Gz6IzBjBE7QMz/2Xbh3O0dR/cS0sGxf6ZijhsfLp1M=
-github.com/stcraft/engine v0.0.0-20240502085713-40b23da6f6bc h1:codFLA+1HqWaQyK7wzMaWjCaF1DZCdyVdGFo4FRfRx4=
-github.com/stcraft/engine v0.0.0-20240502085713-40b23da6f6bc/go.mod h1:9Gz6IzBjBE7QMz/2Xbh3O0dR/cS0sGxf6ZijhsfLp1M=
 github.com/stcraft/intintmap v0.0.0-20240430082658-697351915712 h1:KQRPL8hNbAZ0GK92otUeU8Bq/Dl7vIlnCO7Kew7hyLg=
 github.com/stcraft/intintmap v0.0.0-20240430082658-697351915712/go.mod h1:T27Cp31ZRUmWmJy58260018J6KRNxqERzN+Sc6CvRjE=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

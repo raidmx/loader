@@ -10,16 +10,16 @@ import (
 	"github.com/stcraft/dragonfly/server/player"
 )
 
-// StaffModeRegistry is the registry of all the Staff Members that have
+// Registry is the registry of all the Staff Members that have
 // enabled Staff Mode on the server
-type StaffModeRegistry struct {
+type Registry struct {
 	mu   sync.RWMutex
 	list map[*player.Player]StaffMember
 }
 
-// staffMembers is an instance of StaffModeRegistry that contains a list of
+// staffMembers is an instance of Registry that contains a list of
 // staff members in staff mode
-var staffMembers = StaffModeRegistry{
+var staffMembers = Registry{
 	mu:   sync.RWMutex{},
 	list: map[*player.Player]StaffMember{},
 }
@@ -89,7 +89,7 @@ func enable(p *player.Player) {
 			continue
 		}
 
-		p.Inventory().SetItem(slot, it)
+		_ = p.Inventory().SetItem(slot, it)
 	}
 
 	for slot, it := range armourItems {
@@ -97,7 +97,7 @@ func enable(p *player.Player) {
 			continue
 		}
 
-		p.Armour().Inventory().SetItem(slot, it)
+		_ = p.Armour().Inventory().SetItem(slot, it)
 	}
 }
 
@@ -130,7 +130,7 @@ func disable(p *player.Player) {
 			continue
 		}
 
-		p.Inventory().SetItem(slot, it)
+		_ = p.Inventory().SetItem(slot, it)
 	}
 
 	for slot, it := range staff.armour {
@@ -138,6 +138,6 @@ func disable(p *player.Player) {
 			continue
 		}
 
-		p.Armour().Inventory().SetItem(slot, it)
+		_ = p.Armour().Inventory().SetItem(slot, it)
 	}
 }

@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	_ "embed"
 	"fmt"
+	"github.com/stcraft/loader/config"
 
 	_ "github.com/lib/pq"
-	"github.com/stcraft/engine/config"
 )
 
 // dbConfig represents the configuration file format that contains
@@ -29,7 +29,7 @@ func InitDB() {
 	var cfg = dbConfig{}
 	var err error
 
-	if err := config.Load("data", "./db.json", &cfg, defaultDB); err != nil {
+	if err := config.Load("./db.json", &cfg, defaultDB); err != nil {
 		panic(err)
 	}
 

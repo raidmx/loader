@@ -21,7 +21,7 @@ func (Plugin) Description() string {
 
 // Author ...
 func (Plugin) Author() string {
-	return "Crayder"
+	return "STCraft"
 }
 
 // Version ...

@@ -3,9 +3,9 @@ package dragonfly
 import (
 	_ "embed"
 	"fmt"
+	"github.com/stcraft/loader/config"
 
 	"github.com/stcraft/dragonfly/server/player"
-	"github.com/stcraft/engine/config"
 )
 
 // languageConfig specifies the structure in which translations and
@@ -24,7 +24,7 @@ var defaultLang []byte
 // loadLanguage Parses the language.json file if it exists and creates a new one
 // with the default values if it doesn't exist and loads all the content.
 func LoadLanguage() {
-	if err := config.Load("data", "language.json", &lang, defaultLang); err != nil {
+	if err := config.Load("language.json", &lang, defaultLang); err != nil {
 		panic(err)
 	}
 }

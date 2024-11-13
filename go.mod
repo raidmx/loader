@@ -7,7 +7,6 @@ require (
 	github.com/lib/pq v1.10.9
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stcraft/dragonfly v0.0.0-20240502051235-c963f51018e9
-	github.com/stcraft/engine v0.0.0-20240502085713-40b23da6f6bc
 )
 
 require (
